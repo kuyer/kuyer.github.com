@@ -1,0 +1,11 @@
+Spark Streaming源码解读之生成全生命周期彻底研究与思考
+http://www.cnblogs.com/yinpin2011/p/5521304.html
+
+理解netty对protocol buffers的编码解码
+http://www.cnblogs.com/tankaixiong/p/5524483.html
+
+JVM运行时内存结构
+http://www.cnblogs.com/therunningfish/p/5523995.html
+
+MySQL分区
+http://www.cnblogs.com/Amaranthus/p/5524083.html
