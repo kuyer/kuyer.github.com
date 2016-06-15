@@ -26,9 +26,6 @@
 						<li class="active">
 							<a href="./">首页</a>
 						</li>
-						<li>
-							<a href="javascript:;">分类</a>
-						</li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
 						<li>
@@ -42,24 +39,70 @@
 	<div class="content-wrapper" style="padding-top: 68px;">
 		<div class="container">
 			<div class="box box-primary">
+				<div class="box-header with-border">
+					<div class="box-title">MongoDB</div>
+				</div>
 				<div class="box-body">
-					<img class="img-responsive pad" src="img/a01.jpg" />
-					<p>新的一天，喝杯茶，看着远方的雨越来越大。</p>
+					<h4>MongoDB导出</h4>
+					<div class="callout callout-warning">
+						<p>导出命令：mongoexport</p>
+						<p>
+							<span>参数：</span><br/>
+							<span>--help 说明</span><br/>
+							<span>-d 数据库名</span><br/>
+							<span>-c collection名称</span><br/>
+							<span>-o 导出的文件名称</span><br/>
+							<span>--type 导出的文件格式，默认是：json</span><br/>
+							<span>-f 导出的字段名，如果--type为csv，则需要加上：-f '字段名'</span><br/>
+						</p>
+					</div>
+					<p>mongoexport -u mguser -p mgpassword --authenticationDatabase admin -d db_test -c clt_test -o /tmp/clt_test.json</p>
+					<h4>MongoDB导入</h4>
+					<div class="callout callout-warning">
+						<p>导入命令：mongoimport</p>
+						<p>
+							<span>参数：</span><br/>
+							<span>--help 说明</span><br/>
+							<span>-d 数据库名</span><br/>
+							<span>-c collection名称</span><br/>
+							<span>--file 导入的文件</span><br/>
+							<span>--type 输出的文件格式，默认是：json</span><br/>
+							<span>-f 导入的字段名</span><br/>
+							<span>--headerline 如果导入的格式是csv，则可以试用第一行的标题作为导入的字段</span><br/>
+						</p>
+					</div>
+					<p>mongoimport -u mguser -p mgpassword --authenticationDatabase admin -d db_test -c clt_test --file /tmp/clt_test.json</p>
+					<h4>MongoDB数据备份</h4>
+					<div class="callout callout-warning">
+						<p>备份命令：mongodump</p>
+						<p>
+							<span>参数：</span><br/>
+							<span>--help 说明</span><br/>
+							<span>-d 数据库名</span><br/>
+							<span>-c collection名称</span><br/>
+							<span>-o 备份的文件名</span><br/>
+						</p>
+					</div>
+					<p>mongodump -d db_test -c clt_test -o /tmp</p>
+					<h4>MongoDB数据恢复</h4>
+					<div class="callout callout-warning">
+						<p>恢复命令：mongorestore</p>
+						<p>
+							<span>参数：</span><br/>
+							<span>--help 说明</span><br/>
+							<span>-d 数据库名</span><br/>
+							<span>-c collection名称</span><br/>
+						</p>
+					</div>
+					<p>mongorestore -d db_test -c clt_test /tmp/db_test/clt_test.bson</p>
 				</div>
 			</div>
 			<div class="box box-primary">
 				<div class="box-header with-border">
-					<div class="box-title"><a href="https://github.com/kuyer/kuyer-rpc" target="_blank">枯叶RPC框架0.0.2版本发布</a></div>
-					<div class="box-tools pull-right">2016-05-25 18:30</div>
-				</div>
-				<div class="box-body">本版本为v-0.0.1，增加了Netty的RPC实现。注意：许多基础功能还不完善，望猿友们注意安全！</div>
-			</div>
-			<div class="box box-primary">
-				<div class="box-header with-border">
-					<div class="box-title">Linux环境下搭建Git服务项目</div>
-					<div class="box-tools pull-right">2016-05-23 12:30</div>
+					<div class="box-title">Git</div>
 				</div>
 				<div class="box-body">
+					<h4>Linux环境下搭建Git服务项目</h4>
 					<div class="callout callout-warning">
 						<p>1、假如您已经安装了Git</p>
 						<p>2、假如你的Git服务主机IP为：192.168.56.110</p>
@@ -77,10 +120,20 @@
 			</div>
 			<div class="box box-primary">
 				<div class="box-header with-border">
-					<div class="box-title"><a href="https://github.com/kuyer/kuyer-rpc" target="_blank">枯叶RPC框架0.0.1版本发布</a></div>
-					<div class="box-tools pull-right">2016-05-20 13:30</div>
+					<div class="box-title">枯叶RPC框架</div>
 				</div>
-				<div class="box-body">这些天，闲来无事，随手写了个基于HTTP的RPC框架，该框架欢迎猿友们拍砖。目前还是0.0.1版本，许多基础功能还不完善，望猿友们注意安全！</div>
+				<div class="box-body">
+					<h4><a href="https://github.com/kuyer/kuyer-rpc" target="_blank">枯叶RPC框架0.0.2版本发布</a></h4>
+					<p>本版本为v-0.0.2，增加了Netty的RPC实现。注意：许多基础功能还不完善，望猿友们注意安全！</p>
+					<h4><a href="https://github.com/kuyer/kuyer-rpc" target="_blank">枯叶RPC框架0.0.1版本发布</a></h4>
+					<p>这些天，闲来无事，随手写了个基于HTTP的RPC框架，该框架欢迎猿友们拍砖。目前还是0.0.1版本，许多基础功能还不完善，望猿友们注意安全！</p>
+				</div>
+			</div>
+			<div class="box box-primary">
+				<div class="box-body">
+					<img class="img-responsive pad" src="img/a01.jpg" />
+					<p>新的一天，喝杯茶，看着远方的雨越来越大。</p>
+				</div>
 			</div>
 		</div>
 	</div>
