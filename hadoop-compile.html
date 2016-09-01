@@ -2,106 +2,83 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimum-scale=1.0" />
-<meta charset="UTF-8">
+<meta charset="utf-8" />
 <title>CentOS系统下编译Hadoop2.7.x版本 - 枯叶 - kuyer.github.io</title>
-<link rel="stylesheet" href="css/bootstrap.css" />
-<link rel="stylesheet" href="css/awesome.css" />
-<link rel="stylesheet" href="css/adminlte.css" />
-<link rel="stylesheet" href="css/adminlte-skins.css" />
-<link rel="stylesheet" href="css/common.css" />
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="stylesheet" href="css/kuyer.css" />
 </head>
-<body class="hold-transition skin-blue layout-top-nav fixed">
-<div class="wrapper">
-	<header class="main-header">
-		<nav class="navbar navbar-static-top">
-			<div class="container">
-				<div class="navbar-header">
-					<a class="navbar-brand" href="./">枯叶</a>
-					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
-						<i class="fa fa-bars"></i>
-					</button>
-				</div>
-				<div class="collapse navbar-collapse" id="navbar-collapse">
-					<ul class="nav navbar-nav">
-						<li class="active">
-							<a href="./">首页</a>
-						</li>
-					</ul>
-					<ul class="nav navbar-nav navbar-right">
-						<li>
-							<a href="javascript:;">帮助</a>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</nav>
-	</header>
-	<div class="content-wrapper" style="padding-top: 68px;">
-		<div class="container">
-			<div class="box box-primary">
-				<div class="box-header with-border">
-					<div class="box-title">CentOS系统下编译Hadoop2.7.x版本</div>
-				</div>
-				<div class="box-body">
-					<h4>1、安装基本类库</h4>
-					<p>yum -y install ncurses-devel lzo-devel zlib-devel autoconf automake libtool cmake openssl–devel gcc*</p>
-          <h4>2、安装open-jdk-8</h4>
-          <p>
-            <strong>设置环境变量：</strong>
-            <span>vim /etc/profile</span>
-            <br />
-            <span>export JAVA_HOME=/usr/java/open-jdk-1.8</span>
-            <br />
-            <span>export CLASSPATH=.:$CLASSPATH:$JAVA_HOME/lib:$JAVA_HOME/jre/lib</span>
-            <br />
-            <span>export PATH=$PATH:$JAVA_HOME/bin:$JAVA_HOME/jre/bin</span>
-          </p>
-          <p>
-            <strong>使环境生效：</strong>
-            <span>source /etc/profile</span>
-          </p>
-          <p>
-            <strong>检查Java环境：</strong>
-            <span>java -version</span>
-          </p>
-          <h4>3、安装protobuf</h4>
-          <p>
-            <span>tar -zxvf protobuf-2.6.x.tar.gz</span>
-            <br/>
-            <span>cd protobuf-2.6.x</span>
-            <br/>
-            <span>./configure</span>
-            <br/>
-            <span>make</span>
-            <br/>
-            <span>make install</span>
-            <br/>
-            <span>测试是否安装成功：protoc --version</span>
-            <br/>
-          </p>
-          <h4>4、安装maven</h4>
-          <h4>5、安装ant</h4>
-          <h4>6、安装hadoop</h4>
-          <p>
-            <strong>编译hadoop</strong>
-            <span>mvn clean package -Pdist,native -DskipTests -Dtar</span>
-            <br/>
-            <span>编译完成后，生产的hadoop文件在./hadoop-dist/target/hadoop-2.7.x.tar.gz路径下</span>
-          </p>
-				</div>
+<body>
+<div class="page">
+	<div class="view header">
+		<div class="wrap cleax">
+			<div class="item"><a href="./" class="title">枯叶</a></div>
+			<div class="item"><a href="./" class="active"><span>首页</span></a></div>
+		</div>
+	</div>
+	<div class="view mainer">
+		<div class="wrap cleax">
+			<div class="box bottom">
+				<span class="name">CentOS系统下编译Hadoop2.7.x版本</span>
+				<div class="line"></div>
+				<div class="row"></div>
+				<h4>1、安装基本类库</h4>
+				<p>yum -y install ncurses-devel lzo-devel zlib-devel autoconf automake libtool cmake openssl–devel gcc*</p>
+		          <h4>2、安装open-jdk-8</h4>
+		          <p>
+		            <strong>设置环境变量：</strong>
+		            <span>vim /etc/profile</span>
+		            <br />
+		            <span>export JAVA_HOME=/usr/java/open-jdk-1.8</span>
+		            <br />
+		            <span>export CLASSPATH=.:$CLASSPATH:$JAVA_HOME/lib:$JAVA_HOME/jre/lib</span>
+		            <br />
+		            <span>export PATH=$PATH:$JAVA_HOME/bin:$JAVA_HOME/jre/bin</span>
+		          </p>
+		          <p>
+		            <strong>使环境生效：</strong>
+		            <span>source /etc/profile</span>
+		          </p>
+		          <p>
+		            <strong>检查Java环境：</strong>
+		            <span>java -version</span>
+		          </p>
+		          <h4>3、安装protobuf</h4>
+		          <p>
+		            <span>tar -zxvf protobuf-2.6.x.tar.gz</span>
+		            <br/>
+		            <span>cd protobuf-2.6.x</span>
+		            <br/>
+		            <span>./configure</span>
+		            <br/>
+		            <span>make</span>
+		            <br/>
+		            <span>make install</span>
+		            <br/>
+		            <span>测试是否安装成功：protoc --version</span>
+		            <br/>
+		          </p>
+		          <h4>4、安装maven</h4>
+		          <h4>5、安装ant</h4>
+		          <h4>6、安装hadoop</h4>
+		          <p>
+		            <strong>编译hadoop</strong>
+		            <span>mvn clean package -Pdist,native -DskipTests -Dtar</span>
+		            <br/>
+		            <span>编译完成后，生产的hadoop文件在./hadoop-dist/target/hadoop-2.7.x.tar.gz路径下</span>
+		          </p>
 			</div>
 		</div>
 	</div>
-	<footer class="main-footer" style="background-color: transparent; color: #FFF;">
-		<div class="container">
-			<p>Copyright &copy; 枯叶工作室。<strong>本站所有资源遵循Apache、GNU、MIT等开源协议。</strong></p>
+	<div class="view footer">
+		<div class="wrap">
+			<a href="about.html" target="_blank">关于枯叶</a>
+			<span class="split">|</span>
+			<a href="product.html" target="_blank">产品中心</a>
+			<span class="split">|</span>
+			<a href="service.html" target="_blank">服务中心</a>
 		</div>
-	</footer>
+		<div class="wrap"><a href="./" target="_blank">© 枯叶网络工作室 版权所有</a></div>
+	</div>
 </div>
-<script type="text/javascript" src="js/jquery.js"></script>
-<script type="text/javascript" src="js/bootstrap.js"></script>
-<script type="text/javascript" src="js/adminlte.js"></script>
-<script type="text/javascript" src="js/slimscroll.js"></script>
-<script type="text/javascript" src="js/common.js"></script>
 </body>
 </html>
