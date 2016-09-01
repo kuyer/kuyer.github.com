@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimum-scale=1.0" />
+<meta charset="utf-8" />
+<title>MySQL用户及权限 - 枯叶 - kuyer.github.io</title>
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="stylesheet" href="css/kuyer.css" />
+</head>
+<body>
+<div class="page">
+	<div class="view header">
+		<div class="wrap cleax">
+			<div class="item"><a href="./" class="title">枯叶</a></div>
+			<div class="item"><a href="./" class="active"><span>首页</span></a></div>
+		</div>
+	</div>
+	<div class="view mainer">
+		<div class="wrap cleax">
+			<div class="box bottom">
+				<span class="name">MySQL用户及权限</span>
+				<div class="line"></div>
+				<div class="row"></div>
+				<h3>一、创建用户</h3>
+				<p>命令：create user 'username'@'host' idendified by 'password';</p>
+				<p>如：create user 'test1'@'%' idendified by '111111';</p>
+				<h3>二、设置用户密码</h3>
+				<p>命令：set password for 'test1'@'%'=password('222222');</p>
+				<h3>三、授权</h3>
+				<p>命令：grant privileges on databasename.tablename to 'username'@'host';</p>
+				<p>如：grant insert,update,select on dbtest1.tuser to 'test1'@'%';#给test1用户赋dbtest1数据库中tuser表的新增、修改及查询权限</p>
+				<p>如：grant all on dbtest1.* to 'test1'@'%';#给test1用户赋dbtest1数据库的所有权限</p>
+				<p>grant privileges on databasename.tablename to 'username'@'host' with grant option;#设置该用户可以给其它用户授权</p>
+				<h3>四、查看用户权限</h3>
+				<p>命令：show grants for 'test1'@'%';</p>
+				<h3>五、撤销用户权限</h3>
+				<p>命令：revoke privilege on databasename.tablename from 'username'@'host';</p>
+				<p>如：revoke insert,update on dbtest1.* from 'test1'@'%';</p>
+				<h3>六、删除用户</h3>
+				<p>命令：drop user 'username'@'host';</p>
+			</div>
+		</div>
+	</div>
+	<div class="view footer">
+		<div class="wrap">
+			<a href="about.html" target="_blank">关于枯叶</a>
+			<span class="split">|</span>
+			<a href="product.html" target="_blank">产品中心</a>
+			<span class="split">|</span>
+			<a href="service.html" target="_blank">服务中心</a>
+		</div>
+		<div class="wrap"><a href="./" target="_blank">© 枯叶网络工作室 版权所有</a></div>
+	</div>
+</div>
+</body>
+</html>
