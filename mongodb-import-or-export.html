@@ -34,7 +34,7 @@
 						<span>-f 导出的字段名，如果--type为csv，则需要加上：-f '字段名'</span><br/>
 					</p>
 				</div>
-				<p>mongoexport -u mguser -p mgpassword --authenticationDatabase admin -d db_test -c clt_test -o /tmp/clt_test.json</p>
+				<pre>mongoexport -u mguser -p mgpassword --authenticationDatabase admin -d db_test -c clt_test -o /tmp/clt_test.json</pre>
 				<h4>MongoDB导入</h4>
 				<div class="callout callout-warning">
 					<p>导入命令：mongoimport</p>
@@ -49,7 +49,7 @@
 						<span>--headerline 如果导入的格式是csv，则可以试用第一行的标题作为导入的字段</span><br/>
 					</p>
 				</div>
-				<p>mongoimport -u mguser -p mgpassword --authenticationDatabase admin -d db_test -c clt_test --file /tmp/clt_test.json</p>
+				<pre>mongoimport -u mguser -p mgpassword --authenticationDatabase admin -d db_test -c clt_test --file /tmp/clt_test.json</pre>
 				<h4>MongoDB数据备份</h4>
 				<div class="callout callout-warning">
 					<p>备份命令：mongodump</p>
@@ -61,7 +61,7 @@
 						<span>-o 备份的文件名</span><br/>
 					</p>
 				</div>
-				<p>mongodump -d db_test -c clt_test -o /tmp</p>
+				<pre>mongodump -d db_test -c clt_test -o /tmp</pre>
 				<h4>MongoDB数据恢复</h4>
 				<div class="callout callout-warning">
 					<p>恢复命令：mongorestore</p>
@@ -72,7 +72,7 @@
 						<span>-c collection名称</span><br/>
 					</p>
 				</div>
-				<p>mongorestore -d db_test -c clt_test /tmp/db_test/clt_test.bson</p>
+				<pre>mongorestore -d db_test -c clt_test /tmp/db_test/clt_test.bson</pre>
 			</div>
 		</div>
 	</div>

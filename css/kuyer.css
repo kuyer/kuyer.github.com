@@ -466,3 +466,10 @@ form .frow.bottom {
 .form td.label {
 	background-color: #f8f8f8;
 }
+pre {
+	padding: 8px;
+	border: 1px solid #dedede;
+	background-color: #f8f8f8;
+	color: #d04433;
+	border-radius: 2px;
+}
