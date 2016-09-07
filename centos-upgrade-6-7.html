@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimum-scale=1.0" />
+<meta charset="utf-8" />
+<title>CentOS版本从6.x升级到7.x - 枯叶 - kuyer.github.io</title>
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="stylesheet" href="css/kuyer.css" />
+</head>
+<body>
+<div class="page">
+	<div class="view header">
+		<div class="wrap cleax">
+			<div class="item"><a href="./" class="title">枯叶</a></div>
+			<div class="item"><a href="./" class="active"><span>首页</span></a></div>
+		</div>
+	</div>
+	<div class="view mainer">
+		<div class="wrap cleax">
+			<div class="box bottom">
+				<span class="name">CentOS版本从6.x升级到7.x</span>
+				<div class="line"></div>
+				<div class="row"></div>
+				<p>1、安装升级工具依赖的软件包</p>
+				<pre>yum -y install openscap pcre-devel libxml2-devel libxslt-devel m2crypto python-simplejson mod_wsgi</pre>
+				<p>2、安装以下软件的最新版，可以到<a href="http://dev.centos.org/centos/6/upg/x86_64/Packages" target="_blank">这里</a>查找</p>
+				<pre>rpm -ihv http://dev.centos.org/centos/6/upg/x86_64/Packages/preupgrade-assistant-1.0.2-36.0.1.el6.centos.x86_64.rpm
+rpm -ihv http://dev.centos.org/centos/6/upg/x86_64/Packages/preupgrade-assistant-contents-0.5.14-1.el6.centos.noarch.rpm
+rpm -ihv http://dev.centos.org/centos/6/upg/x86_64/Packages/preupgrade-assistant-ui-1.0.2-36.0.1.el6.centos.x86_64.rpm
+rpm -ihv http://dev.centos.org/centos/6/upg/x86_64/Packages/redhat-upgrade-tool-0.7.22-3.el6.centos.noarch.rpm</pre>
+				<p>3、执行升级</p>
+				<pre>redhat-upgrade-tool --network 7.0 --instrepo http://mirrors.aliyun.com/centos/7.2.1511/os/x86_64/ --force</pre>
+				<p>升级成功后会看到消息“Finished. Reboot to start upgrade.”</p>
+				<p>4、重启服务器</p>
+				<p>重启主机后，OS将启动一个称为System Upgrade的新的grub对象，支持将所有已经通过upgrade tool下载的软件包更新。</p>
+				<p>5、检查系统版本， 看到版本 CentOS Linux release 7.0.1406 (Core) 证明升级成功</p>
+				<pre>cat /etc/redhat-release</pre>
+			</div>
+		</div>
+	</div>
+	<div class="view footer">
+		<div class="wrap">
+			<a href="about.html" target="_blank">关于枯叶</a>
+			<span class="split">|</span>
+			<a href="product.html" target="_blank">产品中心</a>
+			<span class="split">|</span>
+			<a href="service.html" target="_blank">服务中心</a>
+		</div>
+		<div class="wrap"><a href="./" target="_blank">© 枯叶网络工作室 版权所有</a></div>
+	</div>
+</div>
+</body>
+</html>
