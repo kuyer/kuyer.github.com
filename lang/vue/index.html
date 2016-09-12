@@ -6,10 +6,13 @@
 <body>
 <div id="app">
 	<p>{{ message }}</p>
-	<input type="text" v-model="message" />
 	<input type="button" v-on:click="changeMessage" value="change">
+	<p><input type="text" v-model="data" v-on:keyup.enter="addData" /></p>
 	<ul>
-		<li v-for="data in datas">{{data.text}}</li>
+		<li v-for="data in datas">
+			<span>{{data.text}}</span>
+			<button v-on:click="deleteData($index)">&times;</button>
+		</li>
 	</ul>
 </div>
 <script type="text/javascript" src="../../js/vue.js"></script>
@@ -29,6 +32,16 @@ new Vue({
 	methods: {
 		changeMessage: function() {
 			this.message = this.message.split('').reverse().join('');
+		},
+		addData: function() {
+			var text = this.data.trim();
+			if(text) {
+				this.datas.push({text: text});
+				this.data = '';
+			}
+		},
+		deleteData: function(index) {
+			this.datas.splice(index, 1);
 		}
 	}
 });
