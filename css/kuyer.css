@@ -125,6 +125,15 @@ body, .page {
 	color: #fff;
 	text-decoration: none;
 }
+.header .item a.logo {
+	margin-right: 12px;
+}
+.header .item a.logo img {
+	margin-top: 8px;
+	width: 32px;
+	height: 32px;
+	border: 0px;
+}
 .header .item a.title {
 	margin-right: 12px;
 	font-size: 26px;
