@@ -1,2 +1,2 @@
-paginate: 1
-paginate_path: "_post/:num"
+paginate: 40
+paginate_path: "_posts/:num"
