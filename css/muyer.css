@@ -1,0 +1,132 @@
+body, .views {
+	background-color: #f8f8f8;
+}
+.view .wrap {
+	margin: 0px auto;
+	width: 100%;
+}
+
+.view.header {
+	position: fixed;
+	left: 0px;
+	right: 0px;
+	top: 0px;
+	z-index: 999;
+	overflow: hidden;
+}
+.view.header .wrap {
+	padding: 0px 18px;
+}
+.header .item {
+	display: none;
+}
+.header .mitm {
+	display: block;
+	color: #fff;
+	text-align: center;
+}
+.header .mitm.icon {
+	position: fixed;
+	top: 12px;
+	color: #fff;
+}
+.header .mitm.icon.search {
+	left: 18px;
+}
+.header .mitm.icon.more {
+	right: 18px;
+}
+.header .mitm .name {
+	font-size: 24px;
+}
+.view.mainer {
+	margin-top: 48px;
+	/** margin-bottom: 53px; **/
+}
+.view.footer {
+	display: none;
+}
+/**
+.view.footer {
+	position: fixed;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	padding: 0px;
+	border-top: 1px solid #dedede;
+	background-color: #f8f8f8;
+}
+.view.footer .tgrd {
+	display: table;
+	width: 100%;
+	border-collapse: separate;
+	color: #666;
+}
+.view.footer .tgrd .trow {
+	display: table-row;
+}
+.view.footer .tgrd .trow .tcol {
+	display: table-cell;
+	text-align: center;
+	padding: 5px 0px;
+	width: 25%;
+	cursor: pointer;
+	height: 40px;
+}
+.view.footer .tgrd .trow .tcol .icon.home {
+	margin-left: -6px;
+}
+.view.footer .tgrd .trow .tcol .icon.eye {
+	margin-left: -7px;
+}
+.view.footer .tgrd .trow .tcol .icon.chat {
+	margin-left: -8px;
+}
+.view.footer .tgrd .trow .tcol .icon.user {
+	margin-left: -8px;
+}
+.view.footer .tgrd .trow .tcol .text {
+	margin-top: 20px;
+	font-size: 12px;
+}
+.footer .wrap {
+	display: none;
+}
+**/
+
+.box {
+	border-left: 0px;
+	border-right: 0px;
+	border-radius: 0px;
+}
+.box.col {
+	float: none;
+	width: 100%;
+	margin-right: 0px;
+}
+
+.modal, .modal.mw1, .modal.mw2, .modal.mw3, .modal.mw4, .modal.mw5 {
+	width: 100%;
+}
+
+.content {
+	float: none;
+	width: 100%;
+	margin-right: 0px;
+	margin-bottom: 18px;
+}
+.content.inright {
+	margin-left: 0px;
+	margin-bottom: 0px;
+}
+.sidebar {
+	float: none;
+	width: 100%;
+}
+
+.pview {
+	margin: 0px auto;
+	width: 100%;
+	cursor: pointer;
+	border-radius: 2px;
+}
