@@ -4,7 +4,7 @@ layout: layout
 ---
 
 <ul>
-{% for post in posts %}
+{% for post in site.posts %}
 	<li>
       <a href="{{ post.url }}">{{ post.title }}</a>
       <p>{{ post.excerpt }}</p>

@@ -4,10 +4,12 @@ layout: layout
 ---
 
 <ul>
-{% for post in posts %}
+{% for post in paginator.posts %}
 	<li>
       <a href="{{ post.url }}">{{ post.title }}</a>
       <p>{{ post.excerpt }}</p>
+      <p>{{ post.date }}</p>
+      <p>{{ post.content  }}</p>
     </li>
 {% endfor %}
 </ul>
