@@ -1,14 +1,17 @@
 ---
 layout: detail
 permalink: /spring/session
-title: spring-session
-categories: spring
-tags: session
-description: Spring Session源码解读
+title: Spring Session源码解读
+category: spring
+cover: /images/spring/session.jpg
+tags: SpringSession,Session共享,Session水平扩展,非Web访问Session
+description: Spring在Servlet3.x的基础上，实现了多服务的Session共享问题，本文在源码的基础上解读
 published: true
 ---
 
 # Spring Session源码解读
+
+Spring在Servlet3.x的基础上，实现了多服务的Session共享问题，本文在源码的基础上解读
 
 ## ServletContainerInitializer
 

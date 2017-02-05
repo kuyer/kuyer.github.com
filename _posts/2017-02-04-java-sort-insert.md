@@ -1,9 +1,17 @@
 ---
-title: 插入排序算法
 layout: detail
+permalink: /java/sort/insert
+title: 插入排序算法
+category: data
+cover: /images/java/sort/insert.jpg
+tags: 排序算法,Java排序,插入排序
+description: 本文介绍了插入排序算法的思想和图解，并利用Java语言实现了该算法
+published: true
 ---
 
 # 插入排序算法（Insert Sort）
+
+本文介绍了插入排序算法的思想和图解，并利用Java语言实现了该算法
 
 > 插入排序(Insert Sort)算法的基本思想是：
 

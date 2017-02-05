@@ -1,8 +1,17 @@
 ---
-title: redis
 layout: detail
+permalink: /data/redis
+title: Redis的介绍和使用
+category: data
+cover: /images/data/redis.jpg
+tags: 缓存,Redis
+description: 本文介绍了Redis缓存数据库的使用方式和问题的解决
+published: true
 ---
-# redis
+
+# Redis的介绍和使用
+
+本文介绍了Redis缓存数据库的使用方式和问题的解决
 
 ## redis-cli连接
 无密码连接
