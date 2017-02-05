@@ -1,6 +1,11 @@
 ---
-title: spring-session
 layout: detail
+permalink: /spring/session
+title: spring-session
+categories: spring
+tags: session
+description: Spring Session源码解读
+published: true
 ---
 
 # Spring Session源码解读
@@ -17,7 +22,7 @@ public interface ServletContainerInitializer {
 
 	public void onStartup(Set<Class<?>> c, ServletContext ctx)
 		throws ServletException;
-    
+
 }
 ```
 
@@ -71,7 +76,7 @@ public void onStartup(ServletContext servletContext)
 }
 ```
 
-这个方法的主要过程： 
+这个方法的主要过程：
 
 1. 添加ContextLoaderListener，使用过spring-mvc的肯定对这个Listener不陌生，这个Listener是整个spring-web的核心，由它来自动装配spring的核心容器ApplicationContext。第一步中的ApplicationContext作为构造参数传进了该listener。web容器启动时会通知该listener，该listener就会启动ApplicationContext的生命周期。并将bean加载完毕。因为这是spring-web边界内的，所以就不再展开，只要知道大概做了什么事情就行了。
 2. 通过insertSessionRepositoryFilter注册了一个Filter，从名字知道这个Filter叫SessionRepositoryFilter，顾名思义，它肯定是通过一定方式做session持久化的。
@@ -190,7 +195,7 @@ public WebApplicationContext initWebApplicationContext(ServletContext servletCon
 }
 ```
 
-上面只抽取了ContextLoader的关键逻辑 
+上面只抽取了ContextLoader的关键逻辑
 
 1. ApplicationContext被默认放入了ServletContext中，key是个默认值。上一篇提过在获取对应name的filter时会从ServletContext里先得ApplicationContext，再获取对应依赖。
 2. configureAndRefreshWebApplicationContext这个方法最终启动了ApplictionContext的最核心refresh，这个方法被放在公共抽象类AbstractApplicationContext里，几乎所有的ApplicationContext都会执行。这个阶段结束后，ApplicationContext也就启动完毕，整个容器的依赖也就完成。因为篇幅太长ApplicationContext启动的细节就不再展开。
@@ -225,11 +230,11 @@ public class ServletRequestWrapper implements ServletRequest {
 	    }
 	    this.request = request;
 	}
-	
+
 	public ServletRequest getRequest() {
 	    return this.request;
 	}
-	
+
 	public Object getAttribute(String name) {
 	    return this.request.getAttribute(name);
 	}
@@ -248,15 +253,15 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     private HttpServletRequest _getHttpServletRequest() {
         return (HttpServletRequest) super.getRequest();
     }
-    
+
 	......
-	
+
 }
 ```
 
 SessionRepositoryRequestWrapper继承了HttpServletWrapper，并覆盖了getSession方法，通过spring自己的策略生成session。
 
-1. Spring定义了新的response wrapper–OnCommittedResponseWrapper，其关联了自实现的字符和字节输出流，并定义了一个模板方法onResponseCommitted，由继承子类来实现。 
+1. Spring定义了新的response wrapper–OnCommittedResponseWrapper，其关联了自实现的字符和字节输出流，并定义了一个模板方法onResponseCommitted，由继承子类来实现。
 2. OnCommittedResponseWrapper关联了自己实现的一个字节流和字符流。他们和普通的字节字符流一样也是个包装类。
 
 ## 通过SessionRepositoryFilter对Servlet侵入
@@ -268,13 +273,13 @@ spring-session通过Filter将自定义的Request wrapper和Response Wrapper侵�
 protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
 	request.setAttribute(SESSION_REPOSITORY_ATTR, sessionRepository);
-	
+
 	SessionRepositoryRequestWrapper wrappedRequest = new SessionRepositoryRequestWrapper(request, response, servletContext);
 	SessionRepositoryResponseWrapper wrappedResponse = new SessionRepositoryResponseWrapper(wrappedRequest,response);
-	
+
 	HttpServletRequest strategyRequest = httpSessionStrategy.wrapRequest(wrappedRequest, wrappedResponse);
 	HttpServletResponse strategyResponse = httpSessionStrategy.wrapResponse(wrappedRequest, wrappedResponse);
-	
+
 	try {
 	    filterChain.doFilter(strategyRequest, strategyResponse);
 	} finally {
@@ -293,7 +298,7 @@ abstract class OncePerRequestFilter implements Filter {
 		//alreadyFilteredAttributeName是个静态变量，由类名+.filtered构成
 		//这样就能保证同一个类只被调用一次。
 		boolean hasAlreadyFilteredAttribute = request.getAttribute(alreadyFilteredAttributeName) != null;
-	
+
 		if (hasAlreadyFilteredAttribute) {
 		    filterChain.doFilter(request, response);
 		} else {
@@ -304,7 +309,7 @@ abstract class OncePerRequestFilter implements Filter {
 			}
 		}
 	}
-	
+
 }
 ```
 
@@ -358,7 +363,7 @@ private final class HttpSessionWrapper implements HttpSession {
 		this.servletContext = servletContext;
 	}
 	//省略了大部分方法，都是委托给被包装的Session处理的
-	
+
 	//对session坐invalidate时去数据仓库删掉对应的数据
 	public void invalidate() {
 		checkState();
@@ -367,11 +372,11 @@ private final class HttpSessionWrapper implements HttpSession {
 		setCurrentSession(null);
 		sessionRepository.delete(getId());
 	}
-	
+
 	public void setNew(boolean isNew) {
 		this.old = !isNew;
 	}
-	
+
 	public boolean isNew() {
 		checkState();
 		return !old;
@@ -457,12 +462,12 @@ private Cookie createSessionCookie(HttpServletRequest request, Map<String, Strin
 	//以"SESSION"命名的
 	Cookie sessionCookie = new Cookie(cookieName,"");
 	//省略部分非关键逻辑
-	
+
 	if(sessionIds.isEmpty()) {
 	    sessionCookie.setMaxAge(0);
 	    return sessionCookie;
 	}
-	
+
 	if(sessionIds.size() == 1) {
 	    String cookieValue = sessionIds.values().iterator().next();
 	    sessionCookie.setValue(cookieValue);
@@ -472,14 +477,14 @@ private Cookie createSessionCookie(HttpServletRequest request, Map<String, Strin
 	for(Map.Entry<String,String> entry : sessionIds.entrySet()) {
 	    String alias = entry.getKey();
 	    String id = entry.getValue();
-	
+
 	buffer.append(alias);
 	buffer.append(" ");
 	buffer.append(id);
 	buffer.append(" ");
 	}
 	buffer.deleteCharAt(buffer.length()-1);
-	
+
 	sessionCookie.setValue(buffer.toString());
 	return sessionCookie;
 
@@ -619,7 +624,7 @@ private final class SessionRepositoryResponseWrapper extends OnCommittedResponse
     protected void onResponseCommitted() {
         request.commitSession();
     }
-    
+
 }
 ```
 
