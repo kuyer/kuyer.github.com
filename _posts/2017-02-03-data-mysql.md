@@ -10,11 +10,11 @@ published: true
 ---
 # MySQL介绍和使用
 
-本文介绍了MySQL的用户权限，用户密码的设置和找回方式
+本文介绍了MySQL的*用户权限*，*用户密码的设置和找回*方式
 
 ## MySQL找回root用户密码
 
-* 修改my.cnf文件，在[mysqld]进程配置文件中，增添：skip-grant-tables，保存并重启MySQL服务。
+* 修改my.cnf文件，在[mysqld]进程配置文件中，增添：**skip-grant-tables**，保存并重启MySQL服务。
 
 * 运行：${MYSQL_HOME}/bin/mysql -p，提示输入密码是点回车键直接进入，修改root密码：
 
@@ -22,7 +22,7 @@ published: true
 update mysql.user set password=password('rootpassword') where user='root'
 ```
 
-* 修改my.cnf文件，在[mysqld]进程配置文件中，删除：skip-grant-tables，保存并重启MySQL服务。
+* 修改my.cnf文件，在[mysqld]进程配置文件中，删除：**skip-grant-tables**，保存并重启MySQL服务。
 
 * 运行：${MYSQL_HOME}/bin/mysql -u root -p rootpassword; 重新登录MySQL即可
 
