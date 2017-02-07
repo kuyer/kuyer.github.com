@@ -4,7 +4,7 @@ permalink: /data/redis
 title: Redis的介绍和使用
 category: data
 cover: /images/data/redis.jpg
-tags: 缓存,Redis
+tags: [缓存,Redis]
 description: 本文介绍了Redis缓存数据库的使用方式和问题的解决
 published: true
 ---

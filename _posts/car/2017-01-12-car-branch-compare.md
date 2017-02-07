@@ -4,7 +4,7 @@ permalink: /car/branch/compare
 title: 汽车品牌性价比
 category: car
 cover: /images/car/branch/compare.jpg
-tags: 汽车品牌,汽车比较,买车指南
+tags: [汽车品牌,汽车比较,买车指南]
 description: 本文通过汽车的产地、品牌、价格等方面进行全方位的比较
 published: true
 ---

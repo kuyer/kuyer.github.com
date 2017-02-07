@@ -4,7 +4,7 @@ permalink: /linux/centos/upgrade
 title: CentOS版本从6.x升级到7.x
 category: linux
 cover: /images/centos/upgrade.jpg
-tags: Linux,CentOS,CentOS升级
+tags: [Linux,CentOS,CentOS升级]
 description: 本文介绍了CentOS版本从6.x升级到7.x的操作过程。
 published: true
 ---

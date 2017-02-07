@@ -29,12 +29,17 @@
 			<div class="sidebar">
 				<div class="box">
 					<div class="lrow">
-						<div class="covr"><a href="javascript:;" class="img">枯</a></div>
+						<div class="covr"><a href="https://github.com/kuyer" class="img">枯</a></div>
 						<div class="cont">
-							<a href="javascript:;" class="name">枯叶</a>
+							<a href="https://github.com/kuyer" class="name">枯叶</a>
 							<div class="text gray">Hello，我是枯叶 ……</div>
 						</div>
 					</div>
+				</div>
+				<div class="box">
+					{% for tag in site.tags limit:20 %}
+					<a href="javascript:;" class="word">{{ tag[0] }}</a>
+					{% endfor %}
 				</div>
 			</div>
 		</div>

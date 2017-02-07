@@ -4,7 +4,7 @@ permalink: /java/logback
 title: Logback使用指南
 category: java
 cover: /images/java/logback.jpg
-tags: Java日志,Logback
+tags: [Java日志,Logback]
 description: 本文介绍了Logback的配置和使用方式
 published: true
 ---

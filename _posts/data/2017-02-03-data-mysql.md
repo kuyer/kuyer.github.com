@@ -4,7 +4,7 @@ permalink: /data/mysql
 title: MySQL介绍和使用
 category: data
 cover: /images/data/mysql.jpg
-tags: 数据库,MySQL,MySQL找回密码,MySQL权限
+tags: [数据库,MySQL,MySQL找回密码,MySQL权限]
 description: 本文介绍了MySQL的用户权限，用户密码的设置和找回方式
 published: true
 ---
