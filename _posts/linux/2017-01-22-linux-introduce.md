@@ -1,9 +1,9 @@
 ---
 layout: detail
-permalink: /linux/command
+permalink: /linux/introduce
 title: Linux命令介绍和使用
 category: linux
-cover: /images/linux/command.jpg
+cover: /images/linux/introduce.jpg
 tags: [Linux,Linux命令,Linux压缩解压命令]
 description: 介绍Linux操作系统基础命令的使用方式，包括tar等命令
 published: true
@@ -62,7 +62,7 @@ nameserver 202.103.224.68
 
 ### CentOS 环境
 
-1. VirtualBox虚拟机全局网络设置
+* VirtualBox虚拟机全局网络设置
 
 ```sh
 Adapter：
@@ -81,7 +81,7 @@ Adapter1: Host-only 用于主宿机通过192.168.56.x互访，主机是否能上
 Adapter2: NAT 宿机用这一网卡通过主机上网
 
 
-2. 进入到/etc/sysconfig/network-scripts目录，修改网卡信息
+* 进入到/etc/sysconfig/network-scripts目录，修改网卡信息
 
 > 通过vi修改ifcfg-eth0文件，即修改第一块网卡信息
 
@@ -116,19 +116,19 @@ USERCTL=no
 service network restart
 ```
 
-3. 在VirtualBox中复制虚拟机并重新初始化MAC地址，配置网络的时候会出现Device eth0 does not seem to be present, delaying initialization的错误，
+* 在VirtualBox中复制虚拟机并重新初始化MAC地址，配置网络的时候会出现Device eth0 does not seem to be present, delaying initialization的错误，
 其解决方式为：
 
 > 删除/etc/udev/rules.d/70-persistent-net.rules这个文件
 > 70-persistent-net.rules这个文件确定了网卡与MAC地址的绑定，删除后重启电脑，会生成新的70-persistent-net.rule文件
 > 修改/etc/sysconfig/network-scripts/ifcfg-eth0文件，并修改MAC地址后重启网络：service network restart即可
 
-4、当ping 网络出现 unknown host 时
+* 当ping 网络出现 unknown host 时
 
 ```sh
 service network restart
 Shutting down interface eth0:  Device state: 3 (disconnected)
-Shutting down interface eth1:  Error: Device 'eth1' (/org/freedesktop/NetworkManager/Devices/0) 
+Shutting down interface eth1:  Error: Device 'eth1' (/org/freedesktop/NetworkManager/Devices/0)
 disconnecting failed: This device is not active
 ```
 
@@ -150,6 +150,16 @@ vim /etc/sysconfig/network
 ```sh
 vim /etc/hosts
 ```
+
+## xshell连接太慢解决方式
+
+> vim /etc/ssh/sshd_config
+
+```sh
+UsePAM yes UseDNS yes
+```
+
+将UseDNS yes修改为：UseDNS no
 
 ## Linux访问控制
 
@@ -175,5 +185,3 @@ all:121.27.19.21
 ```
 
 > 以上写法表示允许192.168.56和121.27.18两个ip段的客户端连接sshd服务，允许121.27.19.21的客户端连接所有的服务
-
-
