@@ -19,7 +19,11 @@ published: true
 	</div>
 {% endfor %}
 </div>
+{% if paginator.total_pages>=2 %}
 <div class="page box nopad noborder nobg">
+{% if paginator.previous_page %}
+    <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}" class="pitm">上一页</a>
+{% endif %}
 {% for page in (1..paginator.total_pages) %}
 	{% if page == paginator.page %}
       <a href="javascript:;" class="pitm active">{{ page }}</a>
@@ -29,4 +33,8 @@ published: true
       <a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}" class="pitm">{{ page }}</a>
     {% endif %}
 {% endfor %}
+{% if paginator.next_page %}
+    <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}" class="pitm">下一页</a>
+{% endif %}
 </div>
+{% endif %}
