@@ -1,2 +1,2 @@
 paginate: 3
-paginate_path: "/:num"
+paginate_path: "/:num/"

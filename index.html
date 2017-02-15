@@ -18,13 +18,15 @@ published: true
 		<div class="text gray">{{ post.description }}</div>
 	</div>
 {% endfor %}
+</div>
+<div class="page box nopad noborder nobg">
 {% for page in (1..paginator.total_pages) %}
 	{% if page == paginator.page %}
-      <span class="active">{{ page }}</span>
+      <a href="javascript:;" class="pitm active">{{ page }}</a>
     {% elsif page == 1 %}
-      <a href="{{ '/' | prepend: site.baseurl | replace: '//', '/' }}">{{ page }}</a>
+      <a href="{{ '/' | prepend: site.baseurl | replace: '//', '/' }}" class="pitm">{{ page }}</a>
     {% else %}
-      <a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
+      <a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}" class="pitm">{{ page }}</a>
     {% endif %}
 {% endfor %}
 </div>
