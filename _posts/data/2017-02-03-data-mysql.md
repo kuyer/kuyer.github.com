@@ -12,6 +12,42 @@ published: true
 
 本文介绍了MySQL的*用户权限*，*用户密码的设置和找回*方式
 
+## 基本配置
+
+```
+[mysql]
+default-character-set=utf8 # 设置客户端默认字符集
+
+[mysqld]
+port=3306
+basedir=/usr/local/mysql
+datadir=/var/data/mysql
+character-set-server=utf8 # 设置服务端默认字符集
+```
+
+## 查看连接数
+
+```sql
+# 查看连接，如果是root用户，可以看到所有的连接；普通用户只能看到自己的连接
+show processlist;
+
+# 查看全部连接
+show full processlist;
+
+# 查看最大连接数
+show variables like 'max_connections';
+
+# 修改最大连接数
+set global max_connections=500;
+```
+
+配置文件（my.cnf）修改方式：
+
+```
+[mysqld]
+max_connections=500
+```
+
 ## MySQL找回root用户密码
 
 * 修改my.cnf文件，在[mysqld]进程配置文件中，增添：**skip-grant-tables**，保存并重启MySQL服务。
