@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+</head>
+<body>
+<script type="text/javascript">
+function runAsync(callback) {
+	console.log('start.');
+	setTimeout(function() {
+		callback('callback');
+	}, 3000);
+};
+runAsync(function(data) {
+	console.log(data);
+});
+
+function runAsync1() {
+	return new Promise(function(resolve, reject) {
+		setTimeout(function() {
+			console.log('runAsync1');
+			resolve('run1');
+		}, 1000);
+	});
+};
+function runAsync2() {
+	return new Promise(function(resolve, reject) {
+		setTimeout(function() {
+			console.log('runAsync2');
+			resolve('run2');
+		}, 1000);
+	});
+};
+function runAsync3() {
+	return new Promise(function(resolve, reject) {
+		setTimeout(function() {
+			console.log('runAsync3');
+			resolve('run3');
+		}, 1000);
+	});
+};
+runAsync1().then(function(data) {
+	console.log(data);
+	return runAsync2();
+}).then(function(data) {
+	console.log(data);
+	return runAsync3();
+}).then(function(data) {
+	console.log(data);
+});
+</script>
+</body>
+</html>
