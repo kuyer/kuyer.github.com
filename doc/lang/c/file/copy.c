@@ -18,13 +18,13 @@ int main(int argc, char* argv[]) {
 
     printf("cp start.\n");
 
-    // ÓÃÖ»¶ÁµÄ·½Ê½´ò¿ªÒ»¸öÒÑ´æÔÚµÄÎÄ¼ş
+    // ç”¨åªè¯»çš„æ–¹å¼æ‰“å¼€ä¸€ä¸ªå·²å­˜åœ¨çš„æ–‡ä»¶
     int srcfd = open(argv[1], O_RDONLY);
     if(srcfd == -1) {
         printf("open %s fail.\n", argv[1]);
     }
 
-    //´´½¨Ò»¸öĞÂµÄÎÄ¼ş£¬Õâ¸öÎÄ¼şÖ»ÄÜĞ´£¬È¨ÏŞÊÇ0666
+    //åˆ›å»ºä¸€ä¸ªæ–°çš„æ–‡ä»¶ï¼Œè¿™ä¸ªæ–‡ä»¶åªèƒ½å†™ï¼Œæƒé™æ˜¯0666
     int dstfd = open(argv[2], O_CREAT | O_WRONLY, 0666);
     if(dstfd == -1) {
         printf("open %s fail.\n", argv[2]);
@@ -32,10 +32,10 @@ int main(int argc, char* argv[]) {
     }
 
     int len = 0;
-    char buffer[BUFFERSIZE] = {0}; //ÁÙÊ±»º³åÇø
+    char buffer[BUFFERSIZE] = {0}; //ä¸´æ—¶ç¼“å†²åŒº
 
-    while((len=read(srcfd, buffer, BUFFERSIZE))>0) {//Ñ­»·¶ÁÈ¡Êı¾İ
-        // Ğ´ÈëÎÄ¼ş
+    while((len=read(srcfd, buffer, BUFFERSIZE))>0) {//å¾ªç¯è¯»å–æ•°æ®
+        // å†™å…¥æ–‡ä»¶
         if(write(dstfd, buffer, len) != len ) {
             printf("write error.\n");
             return 1;
@@ -45,7 +45,7 @@ int main(int argc, char* argv[]) {
         perror("read error.\n");
         return 1;
     }
-    // ¹Ø±ÕÎÄ¼ş
+    // å…³é—­æ–‡ä»¶
     close(srcfd);
     close(dstfd);
 
