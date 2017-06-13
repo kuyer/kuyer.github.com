@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Canvas1</title>
+</head>
+<body>
+<!-- http://www.cnblogs.com/beevesnoodles/p/6994963.html -->
+<input id="btn" type="button" value="保存" />
+<br /><br />
+<canvas id="canvas" style="border: 1px solid #0000ff"></canvas>
+<br /><br />
+<img id="img" style="border: 1px solid #ccc;">
+<script type="text/javascript">
+var canvas = document.getElementById('canvas');
+canvas.width = 600;
+canvas.height = 400;
+var context = canvas.getContext('2d');
+context.font = '36px Arial';
+context.fillStyle = '#444444';
+context.fillText('你好', canvas.width/2-20, canvas.height/2+20);
+
+context.strokeStyle = '#00ff00';
+context.strokeText('世界', 30, 50);
+
+var draw = function(x, y) {
+	context.clearRect(0, 0, canvas.width, canvas.height);
+	context.beginPath();
+	context.moveTo(x, 0);
+	context.lineTo(x, canvas.height);
+	context.stroke();
+	context.beginPath();
+	context.moveTo(0, y);
+	context.lineTo(canvas.width, y);
+	context.stroke();
+	context.font = '18px Arial';
+	context.fillStyle = '#cc00ff';
+	var text = '('+parseInt(x)+','+parseInt(y)+')';
+	context.fillText(text, 20, 50);
+};
+
+var getLocation = function(x, y) {
+	var rect = canvas.getBoundingClientRect();
+	return {
+		x: (x-rect.left)*(canvas.width/rect.width),
+		y: (y-rect.top)*(canvas.height/rect.height)
+	}
+};
+
+var move = function(e) {
+	var location = getLocation(e.clientX, e.clientY);
+	draw(location.x, location.y);
+};
+canvas.addEventListener('mousemove', move);
+
+var btn = document.getElementById('btn')
+btn.onclick = function() {
+	img.src = canvas.toDataURL();
+};
+var img = document.getElementById('img');
+</script>
+</body>
+</html>
