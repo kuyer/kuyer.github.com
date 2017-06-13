@@ -108,6 +108,40 @@ revoke insert,update on dbtest1.* from 'test1'@'%';
 drop user 'username'@'host';
 ```
 
+## 字符串函数
+
+* 从左截取字符串
+
+left(str, length)
+
+```sql
+select left(c_name, 2) from t_user;
+```
+
+* 从右截取字符串
+
+right(str, length)
+
+```sql
+select right(c_name, 2) from t_user;
+```
+
+* 截取字符串
+
+substring(str, postion, length)
+
+```sql
+select substring(c_name, 2, 2) from t_user;
+```
+
+* 按关键字截取字符串
+
+substring_index(str, delim, count)
+
+```sql
+select substring_index(c_name, '.', 2) from t_user;
+```
+
 ## Windows7下安装MySQL服务
 
 ```bash
