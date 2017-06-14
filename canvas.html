@@ -46,16 +46,15 @@ var getLocation = function(x, y) {
 	}
 };
 
-var move = function(e) {
+canvas.addEventListener('mousemove', function(e) {
 	var location = getLocation(e.clientX, e.clientY);
 	draw(location.x, location.y);
-};
-canvas.addEventListener('mousemove', move);
+});
 
-var btn = document.getElementById('btn')
-btn.onclick = function() {
+var btn = document.getElementById('btn');
+btn.addEventListener('click', function() {
 	img.src = canvas.toDataURL();
-};
+});
 var img = document.getElementById('img');
 </script>
 </body>
