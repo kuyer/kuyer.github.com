@@ -14,6 +14,13 @@ canvas {
 <script type="text/javascript">
 var canvas = document.getElementById('canvas');
 var context = canvas.getContext('2d');
+var datas = [];
+for(var i=0; i<15; i++) {
+	datas[i] = [];
+	for(var j=0; j<15; j++) {
+		datas[i][j] = 0;
+	}
+}
 for(var i=0; i<15; i++) {
 	context.moveTo(15+(i*30), 15);
 	context.lineTo(15+(i*30), 15+(14*30));
@@ -22,6 +29,29 @@ for(var i=0; i<15; i++) {
 	context.lineTo(15+(14*30), 15+(i*30));
 	context.stroke();
 }
+var drawChess = function(i, j, self) {
+	context.beginPath();
+	context.arc(15+(i*30), 15+(j*30), 13, 0, 2*Math.PI);
+	context.closePath();
+	if(self) {
+		context.fillStyle = '#00ff00';
+	} else {
+		context.fillStyle = '#ff00ff';
+	}
+	context.fill();
+};
+canvas.addEventListener('click', function(event) {
+	var x = event.offsetX;
+	var y = event.offsetY;
+	var i = Math.floor(x/30);
+	var j = Math.floor(y/30);
+	if(datas[i][j] == 0) {
+		datas[i][j] = 1;
+		drawChess(i, j, true);
+	} else {
+		alert('位置已被占用');
+	}
+});
 </script>
 </body>
 </html>
