@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Event</title>
+<style type="text/css">
+#area {
+	width: 100px;
+	height: 100px;
+	border: 1px solid #ccc;
+}
+</style>
+</head>
+<body>
+<!-- http://www.cnblogs.com/chenwenhao/p/7045361.html -->
+<div id="area">
+	<a id="link" href="https://www.baidu.com" target="_blank">baidu</a>
+</div>
+<input type="text" id="input" />
+<div id="result"></div>
+<script type="text/javascript" src="../js/event.js"></script>
+<script type="text/javascript">
+var handler = function(event) {
+	alert('browser postion. x='+event.clientX+'; y='+event.clientY);
+	alert('document postion. x='+event.pageX+'; y='+event.pageY);
+	alert('screen postion. x='+event.screenX+'; y='+event.screenY);
+};
+var $area = document.getElementById('area');
+events.addHandler($area, 'click', handler);
+var $link = document.getElementById('link');
+events.addHandler($link, 'click', function(event) {
+	alert('add link event');
+	var event = events.getEvent(event);
+	events.stopPropagation(event);
+	events.preventDefault(event);
+	events.removeHandler($area, 'click', handler);
+});
+var $input = document.getElementById('input');
+var $result = document.getElementById('result');
+events.addHandler($input, 'keypress', function(event) {
+	var result = events.getCode(event);
+	$result.innerText = result;
+});
+</script>
+</body>
+</html>
