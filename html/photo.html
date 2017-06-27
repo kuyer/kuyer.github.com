@@ -28,13 +28,13 @@ window.addEventListener('DOMContentLoaded', function() {
 	var errBack = function(error) {
 		console.log('video capture error.', error.code);
 	};
-	if(navigator.getUserMedia) {
+	/**if(navigator.getUserMedia) {
 		console.log('getUserMedia');
 		navigator.getUserMedia(videoObj, function(stream) {
 			video.src = stream;
 			video.play();
 		}, errBack);
-	} else if(navigator.webkitGetUserMedia) {
+	} else **/if(navigator.webkitGetUserMedia) {
 		console.log('webkitGetUserMedia');
 		navigator.webkitGetUserMedia(videoObj, function(stream) {
 			video.src = window.webkitURL.createObjectURL(stream);
