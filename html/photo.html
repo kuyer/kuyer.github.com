@@ -4,6 +4,7 @@
 <meta charset="utf-8" />
 </head>
 <body>
+<!-- http://www.jb51.net/html5/160919.html -->
 <div>
 	<video src="video" width="640" height="480" autoplay="autoplay"></video>
 </div>
@@ -15,7 +16,7 @@
 </div>
 <script type="text/javascript">
 window.addEventListener('DOMContentLoaded', function() {
-	alert('ready');
+	console.log('ready');
 	var canvas = document.getElementById('canvas');
 	var context = canvas.getContext('2d');
 	var video = document.getElementById('video');
@@ -25,22 +26,22 @@ window.addEventListener('DOMContentLoaded', function() {
 	});
 	var videoObj = {'video': true};
 	var errBack = function(error) {
-		alert('video capture error.'+error.code);
+		console.log('video capture error.', error.code);
 	};
 	if(navigator.getUserMedia) {
-		alert('getUserMedia');
+		console.log('getUserMedia');
 		navigator.getUserMedia(videoObj, function(stream) {
 			video.src = stream;
 			video.play();
 		}, errBack);
 	} else if(navigator.webkitGetUserMedia) {
-		alert('webkitGetUserMedia');
+		console.log('webkitGetUserMedia');
 		navigator.webkitGetUserMedia(videoObj, function(stream) {
 			video.src = window.webkitURL.createObjectURL(stream);
 			video.play();
 		}, errBack);
 	} else if(navigator.mozGetUserMedia) {
-		alert('mozGetUserMedia');
+		console.log('mozGetUserMedia');
 		navigator.mozGetUserMedia(videoObj, function(stream) {
 			video.src = window.URL.createObjectURL(stream);
 			video.play();
