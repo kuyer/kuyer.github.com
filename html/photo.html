@@ -5,55 +5,35 @@
 </head>
 <body>
 <!-- http://www.jb51.net/html5/160919.html -->
-<div>
-	<video src="video" width="640" height="480" autoplay="autoplay"></video>
-</div>
-<div>
-	<button id="snap">Snap Photo</button>
-</div>
-<div>
-	<canvas id="canvas" width="640" height="480"></canvas>
-</div>
+<video id="video" width="640" height="480" autoplay></video>
+<button id="snap">Snap Photo</button>
+<canvas id="canvas" width="640" height="480"></canvas>
+
+
+
 <script type="text/javascript">
 window.addEventListener('DOMContentLoaded', function() {
-	console.log('ready');
 	var canvas = document.getElementById('canvas');
 	var context = canvas.getContext('2d');
 	var video = document.getElementById('video');
-	var snap = document.getElementById('snap');
-	snap.addEventListener('click', function() {
+
+	// Trigger photo take
+	document.getElementById("snap").addEventListener("click", function() {
 		context.drawImage(video, 0, 0, 640, 480);
 	});
-	var videoObj = {
-			video: true,
-		    audio: true };
-	var errBack = function(error) {
-		console.log('video capture error.', error.code);
-	};
-	if(navigator.getUserMedia) {
-		console.log('getUserMedia');
-		navigator.getUserMedia(videoObj, function(stream) {
-			if(window.URL) {
-				video.src = window.URL.createObjectURL(stream);
-			} else {
-				video.src = stream;
-			}
-			//video.autoplay = true;
-			video.play();
-		}, errBack);
-	} else if(navigator.webkitGetUserMedia) {
-		console.log('webkitGetUserMedia');
-		navigator.webkitGetUserMedia(videoObj, function(stream) {
-			video.src = window.webkitURL.createObjectURL(stream);
-			video.play();
-		}, errBack);
-	} else if(navigator.mozGetUserMedia) {
-		console.log('mozGetUserMedia');
-		navigator.mozGetUserMedia(videoObj, function(stream) {
-			video.src = window.URL.createObjectURL(stream);
-			video.play();
-		}, errBack);
+	
+	// Grab elements, create settings, etc.
+
+	// Get access to the camera!
+	if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+	    // Not adding `{ audio: true }` since we only want video now
+	    navigator.mediaDevices.getUserMedia({ video: true }).then(function(stream) {
+	        video.src = window.URL.createObjectURL(stream);
+	        video.play();
+	    });
 	}
+	
+	
 }, false);
 </script>
 </body>
