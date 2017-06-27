@@ -24,14 +24,21 @@ window.addEventListener('DOMContentLoaded', function() {
 	snap.addEventListener('click', function() {
 		context.drawImage(video, 0, 0, 640, 480);
 	});
-	var videoObj = {'video': true};
+	var videoObj = {
+			video: true,
+		    audio: true };
 	var errBack = function(error) {
 		console.log('video capture error.', error.code);
 	};
 	if(navigator.getUserMedia) {
 		console.log('getUserMedia');
 		navigator.getUserMedia(videoObj, function(stream) {
-			video.src =  window.URL.createObjectURL(stream);
+			if(window.URL) {
+				video.src = window.URL.createObjectURL(stream);
+			} else {
+				video.src = stream;
+			}
+			//video.autoplay = true;
 			video.play();
 		}, errBack);
 	} else if(navigator.webkitGetUserMedia) {
