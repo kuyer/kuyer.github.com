@@ -15,7 +15,7 @@
 </div>
 <script type="text/javascript">
 window.addEventListener('DOMContentLoaded', function() {
-	console.log('ready');
+	alert('ready');
 	var canvas = document.getElementById('canvas');
 	var context = canvas.getContext('2d');
 	var video = document.getElementById('video');
@@ -25,21 +25,22 @@ window.addEventListener('DOMContentLoaded', function() {
 	});
 	var videoObj = {'video': true};
 	var errBack = function(error) {
-		console.log('video capture error.', error.code);
+		alert('video capture error.'+error.code);
 	};
 	if(navigator.getUserMedia) {
-		console.log('getUserMedia');
+		alert('getUserMedia');
 		navigator.getUserMedia(videoObj, function(stream) {
 			video.src = stream;
 			video.play();
 		}, errBack);
 	} else if(navigator.webkitGetUserMedia) {
-		console.log('webkitGetUserMedia');
+		alert('webkitGetUserMedia');
 		navigator.webkitGetUserMedia(videoObj, function(stream) {
 			video.src = window.webkitURL.createObjectURL(stream);
 			video.play();
 		}, errBack);
 	} else if(navigator.mozGetUserMedia) {
+		alert('mozGetUserMedia');
 		navigator.mozGetUserMedia(videoObj, function(stream) {
 			video.src = window.URL.createObjectURL(stream);
 			video.play();
