@@ -4,7 +4,8 @@
 <meta charset="utf-8" />
 </head>
 <body>
-<!-- http://www.cnblogs.com/onepixel/p/5300445.html -->
+<!-- http://www.cnblogs.com/onepixel/p/5300445.html
+https://github.com/git-onepixel/guesture -->
 <div class="pages">
 	<div class="page">
 		<p>Page 1</p>
@@ -24,6 +25,12 @@
 </div>
 <script type="text/javascript">
 (function(window, document) {
+	var pages = null;
+	var pagex = null;
+	var mwidth = 0;
+	var pwidth = 0;
+	var pnumber = 0;
+	var pindex = -1;
 	var app = {
 			init: function() {
 				console.log('init start.');
@@ -31,12 +38,28 @@
 					console.log('not mobile device.');
 				}
 				document.addEventListener('DOMContentLoaded', function() {
-					app.initFirstPage();
+					pages = document.querySelector('.pages');
+					pagex = document.querySelectorAll('.pages .page');
+					pnumber = pagex.length;
+					pwidth = window.innerWidth;
+					mwidth = -pwidth*(pnumber-1);
+					
+					app.bindTouchEvent();
+					app.showPage();
 					console.log('init finish.');
 				}.bind(app), false);
 			}(),
-			initFirstPage: function() {
+			showPage: function() {
+				if(pindex <= -1) {
+					pindex = 0;
+				}
+				for(var i=0; i<pnumber; i++) {
+					pagex[i].className = 'page';
+				}
+				pagex[pindex].className = 'page active';
 				console.log('start init first page.');
+			},
+			bindTouchEvent: function() {
 			}
 	};
 })(window, document);
