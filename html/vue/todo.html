@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<title>Todo Vue</title>
+<script src="https://cdn.bootcss.com/vue/2.4.1/vue.js"></script>
+</head>
+<body>
+<div id="app">
+	<form>
+		<input type="hidden" v-bind:value="todo.id" />
+		<label for="title">Title: </label>
+		<input type="text" id="title" v-model="todo.title" />
+		<br />
+		<label for="remark">Remark: </label>
+		<input type="text" id="remark" v-model="todo.remark" />
+		<br />
+		<input type="button" value="Save" v-on:click="save()" :disabled="canSave" />
+	</form>
+	<table border="1">
+		<tr>
+			<th>ID</th>
+			<th>Title</th>
+			<th>Remark</th>
+			<th>Operate</th>
+		</tr>
+		<tr v-for="(todo,index) in todos">
+			<td>{{todo.id}}</td>
+			<td>{{todo.title}}</td>
+			<td>{{todo.remark}}</td>
+			<td>
+				<input type="button" value="Edit" @click="edit(todo.id)" />
+				<input type="button" value="Remove" @click="remove(index)" />
+			</td>
+		</tr>
+	</table>
+</div>
+<script type="text/javascript">
+var TodoItem = (function() {
+	var id = 1;
+	return function(title, remark) {
+		this.id = id++;
+		this.title = title;
+		this.remark = remark;
+	};
+})();
+new Vue({
+	el: '#app',
+	data: {
+		todos: [],
+		todo: {
+			id: '',
+			title: '',
+			remark: ''
+		}
+	},
+	methods: {
+		save: function() {
+			if(this.title=='' || this.remark=='') {
+				return;
+			}
+			if(this.todo.id) {
+				var obj = this.todos.filter(v=>v.id===this.todo.id)[0];
+				obj.title = this.todo.title;
+				obj.remark = this.todo.remark;
+			} else {
+				this.todos.push(new TodoItem(this.todo.title, this.todo.remark));
+				//this.title = this.remark = '';
+				//console.log(JSON.stringify(this.todos));
+			}
+			this.todo = {};
+		},
+		edit: function(id) {
+			var obj = this.todos.filter(v=>v.id===id)[0];
+			//this.todo = obj;
+			this.todo = {
+					id: obj.id,
+					title: obj.title,
+					remark: obj.remark };
+		},
+		remove: function(index) {
+			this.todos.splice(index, 1);
+		}
+	},
+	computed: {
+		canSave: function() {
+			return !this.todo.title || !this.todo.remark;
+		}
+	}
+});
+</script>
+</body>
+</html>
