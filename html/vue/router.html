@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<title>Vue Router</title>
+<script src="https://cdn.bootcss.com/vue/2.4.1/vue.js"></script>
+<script src="https://cdn.bootcss.com/vue-router/2.7.0/vue-router.js"></script>
+</head>
+<body>
+<!-- http://www.cnblogs.com/Johnzhang/p/7237065.html -->
+<div id="app"></div>
+<script type="text/javascript">
+var DetailComponent = {
+		template: '<div><h1>详细</h1><p>编号：{{id}}</p></div>',
+		data: function() {
+			return {
+				id: ''
+			}
+		},
+		created: function() {
+			this.id = this.$route.params.id;
+		}
+};
+var LastListComponent = {
+		template: `
+			<div>
+				<router-link tag='p' v-for="data in datas" :key="data.id" :to="{ name:'detail', params: {id:data.id} }">{{data.title}}</router-link>
+			</div>
+		`,
+		data: function() {
+			return {
+				datas: [{ id: '1', title: '最新详细1' },
+				        { id: '2', title: '最新详细2' },
+				        { id: '3', title: '最新详细3' },
+				        { id: '4', title: '最新详细4' },
+				        { id: '5', title: '最新详细5' }]
+			}
+		}
+};
+var HotsListComponent = {
+		template: `
+				<div>
+				<router-link tag='p' v-for="data in datas" :key="data.id" :to="{ name:'detail', params: {id:data.id} }">{{data.title}}</router-link>
+			</div>
+		`,
+		data: function() {
+			return {
+				datas: [{ id: '1', title: '最热详细1' },
+				        { id: '2', title: '最热详细2' },
+				        { id: '3', title: '最热详细3' },
+				        { id: '4', title: '最热详细4' },
+				        { id: '5', title: '最热详细5' }]
+			}
+		}
+};
+var IndexComponent = {
+		template: '<p>这是首页</p>'
+};
+var ListComponent = {
+		template: `
+			<div>
+				<p>这是看看页</p>
+				<div>
+					<router-link :to="{name:'list-last'}" class="item">最新</router-link>
+					<router-link :to="{name:'list-hots'}" class="item">最热</router-link>
+				</div>
+				<div>
+				<router-view></router-view>
+				</div>
+			</div>
+		`
+};
+var HomeComponent = {
+		template: '<p>这是我的家</p>'
+};
+var router = new VueRouter({
+	linkActiveClass: 'active',
+	routes: [
+	         { path: "/", redirect: '/index' },
+	         { name: "index", path: "/index", component: IndexComponent },
+	         { name: "list", path: "/list", component: ListComponent, 
+	        	 children:[ 
+	        	            { path: '', redirect: 'last' }, 
+	        	            { name: 'list-last', path: 'last', component: LastListComponent }, 
+	        	            { name: 'list-hots', path: 'hots', component: HotsListComponent },
+	        	            { name: 'detail', path: ':id', component: DetailComponent }]
+	         },
+	         { name: "home", path: "/home", component: HomeComponent }]
+});
+new Vue({
+	el: '#app',
+	template: `
+		<div class="all">
+			<div class="nav">
+				<router-link :to="{name:'index'}" tag="div" class="item"><a href="">首页</a></router-link>
+				<router-link :to="{name:'list'}" tag="div" class="item"><a href="">看看</a></router-link>
+				<router-link :to="{name:'home'}" tag="div" class="item"><a href="">我的</a></router-link>
+			</div>
+			<div class="con">
+				<router-view></router-view>
+			</div>
+		</div>
+	`,
+	router: router
+});
+</script>
+</body>
+</html>

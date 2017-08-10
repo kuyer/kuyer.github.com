@@ -4,11 +4,15 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-<title>Todo Vue</title>
+<title>Vue Todo</title>
 <script src="https://cdn.bootcss.com/vue/2.4.1/vue.js"></script>
 </head>
 <body>
 <div id="app">
+	<form>
+		<input type="text" v-model="keyword" />
+		<input type="button" value="Query" @click="query()" />
+	</form>
 	<form>
 		<input type="hidden" v-bind:value="todo.id" />
 		<label for="title">Title: </label>
@@ -17,7 +21,8 @@
 		<label for="remark">Remark: </label>
 		<input type="text" id="remark" v-model="todo.remark" />
 		<br />
-		<input type="button" value="Save" v-on:click="save()" :disabled="canSave" />
+		<!-- <input type="button" value="Save" v-on:click="save()" :disabled="canSave" /> -->
+		<input type="button" value="Save" v-on:click="save()" />
 	</form>
 	<table border="1">
 		<tr>
@@ -38,6 +43,7 @@
 	</table>
 </div>
 <script type="text/javascript">
+var list = [];
 var TodoItem = (function() {
 	var id = 1;
 	return function(title, remark) {
@@ -54,11 +60,15 @@ new Vue({
 			id: '',
 			title: '',
 			remark: ''
-		}
+		},
+		keyword: ''
 	},
 	methods: {
+		query: function() {
+			this.todos = list.filter(v=>v.title.indexOf(this.keyword)!=-1);
+		},
 		save: function() {
-			if(this.title=='' || this.remark=='') {
+			if(this.todo.title=='' || this.todo.remark=='') {
 				return;
 			}
 			if(this.todo.id) {
@@ -67,10 +77,10 @@ new Vue({
 				obj.remark = this.todo.remark;
 			} else {
 				this.todos.push(new TodoItem(this.todo.title, this.todo.remark));
-				//this.title = this.remark = '';
-				//console.log(JSON.stringify(this.todos));
 			}
-			this.todo = {};
+			this.todo.title = this.todo.remark = '';
+			list = this.todos;
+			//console.log(JSON.stringify(this.todos));
 		},
 		edit: function(id) {
 			var obj = this.todos.filter(v=>v.id===id)[0];
@@ -82,6 +92,7 @@ new Vue({
 		},
 		remove: function(index) {
 			this.todos.splice(index, 1);
+			list = this.todos;
 		}
 	},
 	computed: {

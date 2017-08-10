@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<title>Vue Todox</title>
+<script src="https://cdn.bootcss.com/vue/2.4.1/vue.js"></script>
+</head>
+<body>
+<div id="app">
+	<todo-container></todo-container>
+</div>
+<script type="text/javascript">
+;(function() {
+	var list = [];
+	var TodoData = (function() {
+		var id = 1;
+		return function(title, remark) {
+			this.id = id++;
+			this.title = title;
+			this.remark = remark;
+		}
+	})();
+	var TodoQuery = {
+			template: `
+				<form>
+					<input type="text" v-model="keyword" />
+					<input type="button" value="Query" @click="query()" />
+				</form>
+			`,
+			data: function() {
+				return {
+					keyword: ''
+				}
+			},
+			methods: {
+				query: function() {
+					this.$emit('onquery', this.keyword);
+				}
+			}
+	};
+	var TodoEdit = {
+			template: `
+				<form>
+					<div><input type="text" placeholder="Title" v-model="obj.title" /></div>
+					<div><input type="text" placeholder="Remark" v-model="obj.remark" /></div>
+					<div><input type="button" value="Save" v-on:click="save()" /></div>
+				</form>
+			`,
+			props: ['data'],
+			computed: {
+				obj: function() {
+					return {
+						id: this.data.id,
+						title: this.data.title,
+						remark: this.data.remark
+					}
+				}
+			},
+			methods: {
+				save: function() {
+					console.log('save: ', this.obj);
+					this.$emit('onsave', this.obj);
+				}
+			}
+	};
+	var TodoItem = {
+			template: `
+				<tr>
+					<td>{{data.id}}</td>
+					<td>{{data.title}}</td>
+					<td>{{data.remark}}</td>
+					<td>
+						<input type="button" value="Edit" @click="edit()" />
+						<input type="button" value="Remove" @click="remove()" />
+					</td>
+				</tr>
+			`,
+			props: ['data'],
+			methods: {
+				edit: function() {
+					console.log('edit: ', this.data);
+					this.$emit('onedit', this.data.id);
+				},
+				remove: function() {
+					console.log('remove: ', this.data);
+					this.$emit('onremove', this.data.id);
+				}
+			}
+	};
+	var TodoList = {
+			template: `
+				<table border="1">
+					<tr>
+						<th>Id</th>
+						<th>Title</th>
+						<th>Remark</th>
+						<th>Operate</th>
+					</tr>
+					<todo-item v-for="data in datas" :data="data" :key="data.id" @onedit="edit($event)" @onremove="remove($event)"></todo-item>
+				</table>
+			`,
+			props: ['datas'],
+			components: {
+				'todo-item': TodoItem
+			},
+			methods: {
+				edit: function($e) {
+					this.$emit('onedit', $e);
+				},
+				remove: function($e) {
+					this.$emit('onremove', $e);
+				}
+			}
+	};
+	var TodoContainer = {
+			template: `
+				<div class="container">	
+					<todo-query @onquery="query($event)"></todo-query>
+					<hr />
+					<todo-edit :data="data" @onsave="save($event)"></todo-edit>
+					<hr />
+					<todo-list :datas="datas" @onedit="edit($event)" @onremove="remove($event)"></todo-list>
+				</div>
+			`,
+			data: function() {
+				return {
+					data: {
+						id: '',
+						title: '',
+						remark: ''
+					},
+					datas: []
+				}
+			},
+			components: {
+				'todo-query': TodoQuery,
+				'todo-edit': TodoEdit,
+				'todo-list': TodoList
+			},
+			methods: {
+				getById: function(id) {
+					return this.datas.filter(v=>v.id===id)[0] || {};
+				},
+				query: function($e) {
+					this.datas = list.filter(v=>v.title.indexOf($e) !== -1);
+				},
+				save: function($e) {
+					if($e.title=='' || $e.remark=='') {
+						return;
+					}
+					if(this.data.id) {
+						var obj = this.getById($e.id);
+						obj.title = $e.title;
+						obj.remark = $e.remark;
+					} else {
+						this.datas.push(new TodoData($e.title, $e.remark));
+					}
+					this.data = {id:'', title: '', remark: ''};
+					list = this.datas;
+				},
+				edit: function($e) {
+					this.data = this.getById($e);
+				},
+				remove: function($e) {
+					this.datas = this.datas.filter(v=>v.id!==$e);
+					list = this.datas;
+				}
+			}
+	};
+	var app = new Vue({
+		el: '#app',
+		components: {
+			'todo-container': TodoContainer
+		}
+	});
+})();
+</script>
+</body>
+</html>
