@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<title>Vue Router</title>
+<script src="https://cdn.bootcss.com/vue/2.4.1/vue.js"></script>
+<script src="https://cdn.bootcss.com/vue-router/2.7.0/vue-router.js"></script>
+</head>
+<body>
+<div id="app">
+	<router-link v-for="n in [1,2,3,4,5,6,7,8]" :to="{name:'page', params:{num:n}}" :key="n">&nbsp;{{n}}&nbsp;</router-link>
+	<div>
+		<router-view></router-view>
+	</div>
+</div>
+<script type="text/javascript">
+var datas = [];
+(function() {
+	for(var i=1; i<50; i++) {
+		datas.push({
+			id: i,
+			title: `春风十里，我喜欢Vue【${i}】`,
+			remark: `春风十里，我独屹立，正文开始（${i}），正文结束`
+		});
+	}
+})();
+var ItemComponent = {
+		template: `
+			<div>
+				<h3>{{item.title}}</h3>
+				<p>{{item.remark}}</p>
+			</div>
+		`,
+		props: ['item']
+};
+var ListComponent = {
+		template: `
+			<div class="list">
+				<data-item v-for="item in list" :item="item" :key="item.id"></data-item>
+			</div>
+		`,
+		data: function() {
+			return {
+				list: []
+			}
+		},
+		created: function() {
+			var index = this.$route.params.num;
+			this.getPageList(index);
+		},
+		methods: {
+			getPageList: function(index) {
+				var size = 5;
+				var start = (index-1)*size;
+				var end = index*size;
+				this.list = datas.slice(start, end);
+			}
+		},/**
+		watch: {
+			'$route': function() {
+				var index = this.$route.params.num;
+				this.getPageList(index);
+			}
+		},**/
+		beforeRouteUpdate: function(to, from, next) {
+			var index = to.params.num;
+			this.getPageList(index);
+			next();
+		},
+		components: {
+			'data-item': ItemComponent
+		}
+};
+var router = new VueRouter({
+	linkActiveClass: 'active',
+	routes: [{
+		name: 'page',
+		path: '/page/:num',
+		component: ListComponent
+	}]
+});
+new Vue({
+	router: router
+}).$mount('#app');
+</script>
+</body>
+</html>

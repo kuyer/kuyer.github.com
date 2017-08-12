@@ -1,0 +1,67 @@
+{
+    "datas": [
+        {
+            "id":1,
+            "name": "zhangsan",
+            "age": 14,
+            "sexy": "男",
+            "majar": "学生"
+        },
+        {
+            "id":2,
+            "name": "lisi",
+            "age": 19,
+            "sexy": "女",
+            "majar": "学生"
+        },
+        {
+            "id":3,
+            "name": "wangwu",
+            "age": 42,
+            "sexy": "男",
+            "majar": "工人"
+        },
+        {
+            "id":4,
+            "name": "maliu",
+            "age": 10,
+            "sexy": "男",
+            "majar": "学生"
+        },
+        {
+            "id":5,
+            "name": "wangermazi",
+            "age": 82,
+            "sexy": "男",
+            "majar": "画家"
+        },
+        {
+            "id":6,
+            "name": "liudehua",
+            "age": 55,
+            "sexy": "男",
+            "majar": "天王"
+        },
+        {
+            "id":7,
+            "name": "zhoujielun",
+            "age": 14,
+            "sexy": "男",
+            "majar": "歌手"
+        },
+        {
+            "id":8,
+            "name": "wangfei",
+            "age": 50,
+            "sexy": "女",
+            "majar": "歌手"
+        },
+        {
+            "id":9,
+            "name": "mayun",
+            "age": 60,
+            "sexy": "男",
+            "majar": "老板"
+        }
+    ]
+}

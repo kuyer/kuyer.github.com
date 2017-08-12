@@ -1,0 +1,14 @@
+{
+  "name": "cust",
+  "version": "1.0.0",
+  "description": "cust system.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "rory.zhang",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.4"
+  }
+}
