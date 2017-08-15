@@ -1,5 +1,7 @@
 var express = require("express");
+var bodyParser = require("body-parser");
 
+var authRouter = require('./router/auth');
 var custRouter = require('./router/cust');
 
 var app = express();
@@ -15,7 +17,11 @@ app.get('/portal', function(req, res) {
 		}]
 	});
 });
+
+app.use(bodyParser.json());
+app.use(authRouter);
 app.use('/api', custRouter);
+
 app.listen('9001', function() {
 	console.log('server start at 9001.');
 });
